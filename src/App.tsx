@@ -1,50 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
+import InputField from "./component/InputField";
+import { Todo } from "./model";
+import TodoList from "./component/TodoList";
+import Formik from "./component/Formik/Formik";
 
-function App() {
+// React.ReactNode;
+const App: React.FC = () => {
+  const [todo, setTodo] = useState<string>("");
+  const [todos, setTodos] = useState<Todo[]>([]);
+
+  const handleAdd = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (todo) {
+      setTodos([...todos, { id: Date.now(), todo, isDone: false }]);
+      setTodo("");
+    }
+  };
+
   return (
     <>
-      <h1>hello</h1>
+      <div className="App">
+        <span className="heading">Todo App</span>
+        <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
+        <TodoList todos={todos} setTodos={setTodos} />
+        <Formik />
+      </div>
     </>
   );
-}
+};
 
 export default App;
-
-// -------------------------->  Example  tupple
-// ->  let role: [number:string]
-// role=[3,"hello"]
-
-// --------------------------->  Example Object
-// type Person={
-//   name:string,
-//   age:number;
-// }
-
-// let person:Person={
-//   name:"hello",
-//   age:3
-// }
-
-// --------> Example Union(can be assign both number or string)
-// let age: number | string;
-// age='string'      // both correct
-// age=4
-
-//  Any = unknown ;
-
-// let p: unknown;
-
-//  ------------function void --------------------------
-// if the function is return undefiened then using void 
-// let printName:(name:string)=> void 
-
-// if the function is return nothing then using never 
-// let printName:(name:string)=> never
-
-
-// -####------->  to extend the values or interface  <-----------
-
-
-
-
