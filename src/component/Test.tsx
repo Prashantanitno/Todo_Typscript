@@ -42,6 +42,7 @@
 // interface person extends X {
 //   name: string;
 // }
+import { group } from "console";
 import React from "react";
 
 const Test = () => {
@@ -49,3 +50,5 @@ const Test = () => {
 };
 
 export default Test;
+
+
